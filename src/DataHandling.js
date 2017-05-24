@@ -52,6 +52,26 @@ export const loadAllData = (callback = _.noop) => {
       techSalaries,
       USstateNames,
     ) => {
+      countyNames = countyNames.map(({ id, name }) => ({ id: Number(id), name }));
 
+      let medianIncomesMap = {};
+
+      medianIncomes.filter(d => _.find(countyNames, { name: d['countyName'] }))
+                   .forEach(d => {
+                      d['countyID'] = _.find(countyNames, { name: d['countyName'] }).id;
+                      medianIncomesMap[d.countyID] = d;
+                    });
+      
+      techSalaries = techSalaries.filter(d => !_.isNull(d));
+
+      callback({
+        usTopoJson: us,
+        medianIncomes: medianIncomesMap,
+        medianIncomeByCounty: _.groupBy(medianIncomes, 'countyName'),
+        medianIncomeByUSState: _.groupBy(medianIncomes, 'USstate'),
+        countyNames,
+        techSalaries,
+        USstateNames,
+      });
     });
 };
