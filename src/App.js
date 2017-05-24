@@ -41,7 +41,8 @@ class App extends Component {
 
     if (techSalaries.length < 1) return <Preloader />;
 
-    const filteredSalariesMap = _.groupBy(techSalaries, 'countyID');
+    const filteredSalaries = techSalaries;
+    const filteredSalariesMap = _.groupBy(filteredSalaries, 'countyID');
     const countyValues = countyNames.map(
       county => this.countyValue(county, filteredSalariesMap)
     ).filter(d => !_.isNull(d));
