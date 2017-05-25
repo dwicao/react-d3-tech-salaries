@@ -7,7 +7,7 @@ const Axis = D3blackbox(function() {
                  .scale(this.props.scale)
                  .ticks(this.props.data.length);
 
-  d3.select(this.refs.anchor)
+  d3.select(this.anchor)
     .call(axis);
 });
 

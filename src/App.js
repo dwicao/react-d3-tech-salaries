@@ -5,6 +5,7 @@ import _ from 'lodash';
 import Preloader from './components/Preloader';
 import CountyMap from './components/CountyMap';
 import Histogram from './components/Histogram';
+import { Title } from './components/Meta';
 import { loadAllData } from './DataHandling';
 
 import './App.css';
@@ -14,6 +15,11 @@ class App extends Component {
     techSalaries: [],
     countyNames: [],
     medianIncomes: [],
+    filteredBy: {
+      USstate: '*',
+      year: '*',
+      jobTitle: '*',
+    },
   }
 
   componentWillMount() {
@@ -40,6 +46,7 @@ class App extends Component {
       countyNames,
       usTopoJson,
       USstateNames,
+      filteredBy,
     } = this.state;
 
     if (techSalaries.length < 1) return <Preloader />;
@@ -54,6 +61,7 @@ class App extends Component {
 
     return (
       <div className="App container">
+        <Title data={filteredSalaries} filteredBy={filteredBy} />
         <svg width="1100" height="500">
           <CountyMap
             usTopoJson={usTopoJson}

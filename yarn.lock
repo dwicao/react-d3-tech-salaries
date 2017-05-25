@@ -1770,7 +1770,7 @@ d3-request@1.0.5:
     d3-dsv "1"
     xmlhttprequest "1"
 
-d3-scale@1.0.6:
+d3-scale@1.0.6, d3-scale@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-1.0.6.tgz#bce19da80d3a0cf422c9543ae3322086220b34ed"
   dependencies:
